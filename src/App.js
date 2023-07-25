@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 
-function Square({value,onSquareClick}) {
+function Square({value,onSquareClick}) { //create a square 
   return (
   <button className='square' onClick={onSquareClick}>
     {value}
@@ -22,9 +22,9 @@ export default function Board(){
     para = "Next player is: " + (status? "X" : "O");
   }
 
-  function HandClick(i){
+  function HandClick(i){ // status when click on square
     if(squares[i] || CaculateWiner(squares)){
-      return;
+      return; 
     }
     const nextSquare = squares.slice();
     if(status){

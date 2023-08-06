@@ -3,11 +3,12 @@ import './App.css';
 
 function Square({value,onSquareClick}) { //create a square 
   return (
-  <button className='square' onClick={onSquareClick}>
+  <button className='square'  onClick={onSquareClick}>
     {value}
   </button>
   );
 }
+
 
 function Board({xIsNext,onPlay,squares}){
   const winner = CaculateWiner(squares);
@@ -31,32 +32,32 @@ function Board({xIsNext,onPlay,squares}){
     onPlay(nextSquare);
   }
   return (
-  <>
+  <div>
   <div className='announcement'>
     {para}
   </div>
   <div className='center'>
     <div>
-      <Square value={squares[0]} onSquareClick={()=>HandClick(0)}/>
-      <Square value={squares[1]} onSquareClick={()=>HandClick(1)}/>
-      <Square value={squares[2]} onSquareClick={()=>HandClick(2)}/>
+      <Square id="0" value={squares[0]} onSquareClick={()=>HandClick(0)}/>
+      <Square id="1" value={squares[1]} onSquareClick={()=>HandClick(1)}/>
+      <Square id="2" value={squares[2]} onSquareClick={()=>HandClick(2)}/>
     </div>
     
     <div>
-      <Square value={squares[3]} onSquareClick={()=>HandClick(3)}/>
-      <Square value={squares[4]} onSquareClick={()=>HandClick(4)}/>
-      <Square value={squares[5]} onSquareClick={()=>HandClick(5)}/>
+      <Square id="3" value={squares[3]} onSquareClick={()=>HandClick(3)}/>
+      <Square id="4" value={squares[4]} onSquareClick={()=>HandClick(4)}/>
+      <Square id="5" value={squares[5]} onSquareClick={()=>HandClick(5)}/>
     </div>
 
     <div>
-      <Square value={squares[6]} onSquareClick={()=>HandClick(6)}/>
-      <Square value={squares[7]} onSquareClick={()=>HandClick(7)}/>
-      <Square value={squares[8]} onSquareClick={()=>HandClick(8)}/>
+      <Square id="6" value={squares[6]} onSquareClick={()=>HandClick(6)}/>
+      <Square id="7" value={squares[7]} onSquareClick={()=>HandClick(7)}/>
+      <Square id="8" value={squares[8]} onSquareClick={()=>HandClick(8)}/>
     </div>
   </div>
-  </>
+  </div>
   );
-}
+  }
 
 
 function CaculateWiner(squares){
@@ -73,6 +74,9 @@ function CaculateWiner(squares){
   for (let i=0;i<line.length;i++){
     const [a,b,c] = line[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]){
+      const square1 = document.getElementById(String(a));
+      console.log(a);
+      console.log(square1);
       return squares[a];
     }
   }
@@ -98,6 +102,7 @@ export default function Game() {
   }
 
   const moves = history.map((squares, move) => {
+    console.log({history})
     let description;
     if (move > 0) {
       description = 'Go to move #' + move;
@@ -106,7 +111,7 @@ export default function Game() {
     } 
     return (
       <li key={move}>
-        <button onClick={() => jumpTo(move)}>{description}</button>
+        <button className='history-button' onClick={() => jumpTo(move)}>{description}</button>
       </li>
     );
   });

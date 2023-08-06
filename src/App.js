@@ -9,12 +9,12 @@ function Square({value,onSquareClick}) { //create a square
   );
 }
 
-
 function Board({xIsNext,onPlay,squares}){
   const winner = CaculateWiner(squares);
   let para;
   if (winner){
     para = "Winner is: " + winner;
+    window.open("https://demo-rho-nine.vercel.app","_self");
   }else{
     para = "Next player is: " + (xIsNext? "X" : "O");
   }
